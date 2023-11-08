@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+        <link rel="stylesheet" href="static/CSS/header_footer.css">
+        <link rel="stylesheet" href="static/CSS/catalog.css">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"> 
+        <link rel="shortcut icon" href="static/IMG/favicon.ico" type="image/x-icon">
+        <title>DjentPC - Каталог</title>
+      </head>
+    <body>
+        <header>
+        <!-- drop down menu ------------->
+          <div class="drop_down_menu">
+            <nav class="nav">
+              <a href="/">Главная</a>
+              <a href="catalog" class="current_page">Комплектующие</a>
+              <a href="maintenance">Ремонт и обслуживание</a>
+            </nav> 
+    
+            <div class="social_media2">
+              <a href="https://vk.com/djentpc"><img src="static/IMG/vk2.jpg" alt=""></a>
+              <a href="https://t.me/djentpc"><img src="static/IMG/telegram2.jpg" alt=""></a>
+            </div>
+          </div>
+          <!-- drop down menu end ------->
+
+          <!-- apply filters ----->
+          <a href="" class="apply_filters">Показать</a>
+          <!-- apply filtes end -->
+          
+          <div class="header_flexbox">
+            <nav class="nav">
+              <a href="/">Главная</a>
+              <a href="catalog" class="current_page">Комплектующие</a>
+              <a href="maintenance">Ремонт и обслуживание</a>
+            </nav> 
+            <div class="logo"><a href="index"><img src="static/IMG/logo.png" alt=""></a></div>
+            <div class="wrapper">
+    
+              <div class="social_media">
+                <a href="https://vk.com/djentpc"><div><img src="static/IMG/vk.png" alt=""></div></a>
+                <a href="https://t.me/djentpc"><div><img src="static/IMG/telegram.png" alt=""></div></a>
+              </div>
+    
+              <div class="button" onclick="rotateMenuBtn(menu_btn_status)">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>  
+        </header>
+        <section class="catalog">
+          <div class="close_panel" onclick="closeFilters()">
+            <div></div>
+            <div></div>
+          </div>
+          <div class="search_panel">
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(0)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Процессор</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2420" onclick="reviewSelectedFilters()"> Intel Xeon E5-2420</div>
+                <div class="input"><input type="checkbox" key="processor" value="Intel Xeon E5-2450 v2" onclick="reviewSelectedFilters()"> Intel Xeon E5-2450v2</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2620" onclick="reviewSelectedFilters()"> Intel Xeon E5-2620</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2650" onclick="reviewSelectedFilters()"> Intel Xeon E5-2650</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2670" onclick="reviewSelectedFilters()"> Intel Xeon E5-2670</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2680" onclick="reviewSelectedFilters()"> Intel Xeon E5-2680</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2689" onclick="reviewSelectedFilters()"> Intel Xeon E5-2689</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2690" onclick="reviewSelectedFilters()"> Intel Xeon E5-2690</div>
+              </div>
+            </div>
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(1)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Частота</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="frequency" value=1.9 onclick="reviewSelectedFilters()"> 1.9 ГГц</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.2 onclick="reviewSelectedFilters()"> 2.0 ГГц</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.1 onclick="reviewSelectedFilters()"> 2.1 ГГц</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.2 onclick="reviewSelectedFilters()"> 2.2 ГГц</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.3 onclick="reviewSelectedFilters()"> 2.3 ГГц</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.4 onclick="reviewSelectedFilters()"> 2.4 ГГц</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.5 onclick="reviewSelectedFilters()"> 2.5 ГГц</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.6 onclick="reviewSelectedFilters()"> 2.6 ГГц</div>
+              </div>
+            </div>
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(2)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Сокет</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="socket" value="LGA 2011" onclick="reviewSelectedFilters()"> LGA 2011</div>
+                <div class="input"><input type="checkbox" key="socket" value="LGA 1356" onclick="reviewSelectedFilters()"> LGA 1356</div>
+
+              </div>
+            </div>
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(3)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Количество ядер</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="cores" value=4 onclick="reviewSelectedFilters()"> 4</div>
+                <div class="input"><input type="checkbox" key="cores" value=6 onclick="reviewSelectedFilters()"> 6</div>
+                <div class="input"><input type="checkbox" key="cores" value=8 onclick="reviewSelectedFilters()"> 8</div>
+              </div>
+            </div>
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(4)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Количество потоков</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="threads" value=4 onclick="reviewSelectedFilters()"> 4</div>
+                <div class="input"><input type="checkbox" key="threads" value=6 onclick="reviewSelectedFilters()"> 6</div>
+                <div class="input"><input type="checkbox" key="threads" value=8 onclick="reviewSelectedFilters()"> 8</div>
+                <div class="input"><input type="checkbox" key="threads" value=12 onclick="reviewSelectedFilters()"> 12</div>
+                <div class="input"><input type="checkbox" key="threads" value=16 onclick="reviewSelectedFilters()"> 16</div>
+              </div>
+            </div>
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(5)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Объём ОЗУ</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="ram_size" value=8 onclick="reviewSelectedFilters()"> 8 ГБ</div>
+                <div class="input"><input type="checkbox" key="ram_size" value=12 onclick="reviewSelectedFilters()"> 12 ГБ</div>
+                <div class="input"><input type="checkbox" key="ram_size" value=16 onclick="reviewSelectedFilters()"> 16 ГБ</div>
+              </div>
+
+              <div class="flex_search_filter">
+                <div class="arrow arrow_up" onclick="changeArrow(6)">
+                  <div></div>
+                  <div></div>
+                </div>
+                <p>Тип памяти</p>
+                <div class="div_for_hide">
+                  <div class="input"><input type="checkbox" key="ram_type" value="DDR3" onclick="reviewSelectedFilters()"> DDR3</div>
+                  <div class="input"><input type="checkbox" key="ram_type" value="DDR4" onclick="reviewSelectedFilters()"> DDR4</div>
+                </div>
+              </div>
+            </div>
+            <div style="height: 50px;"></div>
+          </div>
+
+          <!-- Новая секция ------------------------------------------------------------------------------------------->
+          <iframe name="votar" style="display:none;"></iframe>
+          <div class="products">
+            <div class="wrapper_products">
+              <div class="filters_basket">
+                <p class="filters" onclick="showFilters()">Фильтры</p>
+                <p class="basket" onclick="showBasket()">Корзина</p>
+              </div>
+
+              <h1>Корзина</h1>
+              <p class="empty">В корзине пусто</p>
+
+            </div>
+            <form action="/reserved_board" method="post" target="votar">
+              <button class="trade_button" type="submit" onclick="showTradeText()">Заказать</button>
+              <input type="text" name="id" value="" style="display: none;">
+            </form>
+            <p class="trade_text">Товар зарезервирован. Вы можете прийти и оплатить его в течении суток по адресу Иркутск, микрорайон Первомайский 96, 3 этаж.</p>
+            <div style="text-align:center">{{ zero_requests }}</div>
+            {% for t in template %}
+            <div class="product">
+              <input type="text" style="display: none;" value="{{ t.product_id }}">
+              <img src="static/IMG/products/{{t.img_src}}">
+              <div class="right_side">
+                  <p>Процессор {{t.processor}} {{t.frequency}}GHz {{t.cores}} ядер {{t.threads}} потоков, ОЗУ {{t.ram_type}} {{t.ram_size}} ГБ, сокет: {{t.socket}}</p>
+                  <div class="footer">
+                      <div class="price">Цена: <span>{{t.price}} ₽</span></div>
+                      <div class="quantity"> {{t.quantity}} шт</div>
+                      <button onclick="addToBasket('{{t.index}}')">Добавить в корзину</button>
+                  </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+
+        <footer>
+            <div class="social_media2">
+              <a href="https://vk.com/djentpc"><img src="static/IMG/vk2.jpg" alt=""></a>
+              <a href="https://vk.com/djentpc"><img src="static/IMG/telegram2.jpg" alt=""></a>
+            </div>
+            <div class="hr"></div>
+            <div class="text">© Djent PC. Все права защищены</div>
+          </footer>
+        </body>
+        <script src="static/JS/script.js"></script>
+        <script></script>
+    </body>
+</html>

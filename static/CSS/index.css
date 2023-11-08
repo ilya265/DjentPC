@@ -1,0 +1,257 @@
+/* intro **********************************************************************************************************/
+.intro{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-family: open sans, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+.intro_bg{
+    background:url(../IMG/intro_background.jpg) center no-repeat fixed;
+    background-size: cover;
+    filter: brightness(30%);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow-x: hidden;
+}
+
+
+.intro .wrapper_center{
+    width: 60%;
+    height: 50%;
+    text-align: center;
+    margin: auto;
+    color: white;
+}
+
+.intro h1{
+    padding: 90px 0 0 0;
+    font-size: 72px;
+    white-space: nowrap;
+    
+}
+
+.intro h2{
+    padding: 65px 0 0 0;
+    letter-spacing: 3px;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.intro h3{
+    padding: 40px 0 0 0;
+    font-size: 24px;
+    font-weight: 300;
+
+}
+
+.intro .scroller{
+    margin: 0 0 40px 0;
+    position: absolute;
+    width: auto;
+    height: auto;
+    bottom: 0;
+    display: flex;
+    animation: scroller_move 1s linear alternate infinite;
+    -moz-animation: scroller_move 1s linear alternate infinite;;
+}
+
+.intro .scroller div{
+    height: 3px;
+    width: 30px;
+    background-color: white;
+    position: relative;
+
+}
+
+.intro .scroller div:first-child{
+    transform: rotate(45deg);
+    left: 5px;
+}
+
+.intro .scroller div:last-child{
+    transform: rotate(-45deg);
+    right: 5px;
+}
+
+@keyframes scroller_move{
+    0%  {margin-bottom: 40px;}
+    100% {margin-bottom: 55px}
+}
+
+.intro a{
+    width: 50px;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    margin: 0 0 30px 0;
+}
+/* adaptive ##############################*/
+
+@media all and (max-width:545px){
+    
+    .intro .wrapper_center{
+        width: 100%;
+        padding: 0 10px
+    }
+}
+
+@media all and (max-height:694px){
+    
+    .intro .wrapper_center{
+        height: 70%;
+    }
+}
+
+
+
+
+/* services *******************************************************************/
+.services{
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-family: open sans;
+    background-color: #f2f2f2;
+    padding: 0 0 120px 0;
+}
+
+.services .wrapper_horizontal{
+    max-width: 1200px;
+    margin: 150px auto 0 auto;
+    padding: 0 40px 0 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.services .item{
+    width: 28%;
+    text-align: center;
+}
+
+.services h2{
+    font-size: 27px;
+}
+
+.services p{
+    margin: 35px 0 0 0;
+    font-weight: 300;
+    line-height: 1.5;
+    font-family: open sans;
+    font-size: 18px;
+}
+
+/* adaptive ##############################*/
+
+@media (max-width:1200px){
+
+    .services h2{
+        font-size: 28px;
+    }
+
+
+    .services p{
+        font-size: 20px;
+    }
+
+}
+
+@media (max-width:960px){
+
+    .services .wrapper_horizontal{
+        flex-direction: column;
+        align-items: center;
+        margin: 50px 0 0 0;
+    }
+
+    .services .wrapper_horizontal:last-child{
+        margin: 0;
+    }
+
+    .services .item{
+        margin: 70px 0 0 0;
+        width: 70%;
+    }
+
+    .services p{
+        margin: 15px 0 0 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* contacts *******************************************************************/
+
+.contacts{
+    font-family: Helvetica, sans-serif;
+    background-color: black;
+}
+
+.contacts .flexbox{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contacts iframe{
+    width:50vw;
+    height: 700px;
+    border-color: white;
+}
+
+.contacts .text{
+    width:45vw;
+    color: white;
+}
+
+.contacts h3{
+    margin: 200px 0 40px 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.contacts p{
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 36px;
+}
+
+.contacts p:last-child{
+    padding: 32px 0 0 0;
+    font-size: 16px;
+}
+
+/* adaptive ##############################*/
+
+@media (max-width:754px){
+
+    .contacts .flexbox{
+        flex-direction: column;
+    }
+
+    .contacts iframe{
+        width:100%;
+        height: 300px;
+    }
+
+    .contacts .text{
+        text-align: center;
+        width:100%;
+    }
+
+    .contacts h3{
+        margin: 70px 0 40px 0;
+        font-size: 28px;
+        font-weight: 600;
+    }
+}

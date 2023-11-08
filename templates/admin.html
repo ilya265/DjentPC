@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/header_footer.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/catalog.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"> 
+        <link rel="shortcut icon" href="{{ url_for('static', filename='IMG/favicon.ico') }}" type="image/x-icon">
+        <title>Админ-панель</title>
+      </head>
+    <body>
+        <header>
+        <!-- drop down menu -->
+          <div class="drop_down_menu">
+            <nav class="nav">
+              <a href="/">Главная</a>
+              <a href="catalog" >Комплектующие</a>
+              <a href="maintenance">Ремонт и обслуживание</a>
+            </nav> 
+    
+            <div class="social_media2">
+              <a href="https://vk.com/djentpc"><img src="{{ url_for('static', filename='IMG/vk2.jpg') }}" alt=""></a>
+              <a href="https://t.me/djentpc"><img src="{{ url_for('static', filename='IMG/telegram2.jpg') }}" alt=""></a>
+            </div>
+          </div>
+          <!-- drop down menu end-->
+          
+          <div class="header_flexbox">
+            <nav class="nav">
+              <a href="/">Главная</a>
+              <a href="catalog" >Комплектующие</a>
+              <a href="maintenance">Ремонт и обслуживание</a>
+            </nav> 
+            <div class="logo"><a href="/"><img src="{{ url_for('static', filename='IMG/logo.png') }}" alt=""></a></div>
+            <div class="wrapper">
+    
+              <div class="social_media">
+                <a href="https://vk.com/djentpc"><div><img src="{{ url_for('static', filename='IMG/vk.png') }}" alt=""></div></a>
+                <a href="https://t.me/djentpc"><div><img src="{{ url_for('static', filename='IMG/telegram.png') }}" alt=""></div></a>
+              </div>
+    
+              <div class="button" onclick="rotateMenuBtn(menu_btn_status)">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>  
+        </header>
+        <div style="min-height:100vh">
+
+          <div style="height: 100px"></div>
+          <div style="display:flex; justify-content: center;margin-bottom: 30px;">
+            <button onclick="showProducts()">Товары</button>
+            <button onclick="showRequests()" style="color:black;background-color:white">Заявки</button>
+            <button onclick="showReservedBoards()">Резервировано</button>
+          </div>
+          <section class="products" style="display:none">
+          <div class="add_item">
+            <iframe name="votar" style="display:none;"></iframe>
+            <form action="new_board" enctype="multipart/form-data" method="post" target="votar">
+              <h1>Добавить новую плату</h1>
+              <div> Картинка: <input type="file" name="img" style="padding-left: 150px"></div>
+              <div> Процессор: <input type="text" name="processor"></div>
+              <div> Частота: <input type="text" name="frequency"></div>
+              <div> Сокет: <input type="text" name="socket"></div>
+              <div> Количество ядер: <input type="text" name="cores"></div>
+              <div> Количество потоков: <input type="text" name="threads"></div>
+              <div> Объём памяти: <input type="text" name="ram_size"></div>
+              <div> Тип памяти: <input type="text" name="ram_type"></div>
+              <div> Цена: <input type="text" name="price"></div>
+              <div> Количество: <input type="text" name="quantity"></div>
+              <button type="submit">Добавить</button>
+          </form>
+          </div>
+
+          {% for t in product_template %}
+
+            <form action="/change_board" method="post" target="votar">
+              <div class="product">
+                <img src="static/IMG/products/{{t.img_src}}">
+                <div class="right_side">
+                    <p>Процессор {{t.processor}} {{t.frequency}}GHz {{t.cores}} ядер {{t.threads}} потоков, ОЗУ {{t.ram_type}} {{t.ram_size}} ГБ, сокет: {{t.socket}}</p>
+                    <div class="footer">
+                        <input style="display:none" type="num" name="product_id" value="{{t.product_id}}">
+                        <div class="price">Цена: <input type="text" name="price" value="{{t.price}}"><span>₽</span></div>
+                        <div class="quantity"><input type="text" name="quantity" value="{{t.quantity}}"> шт</div>
+                        <button class="accept" type="submit">
+                          <div></div>
+                          <div></div>
+                        </button>
+                        <div>
+                          <label for="checkbox" style="padding-right: 10px;">Удалить:</label>
+                          <input style="scale: 2;" type="checkbox" name="del" value="1">
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </form>
+
+            {% endfor %}
+
+          </section>
+          <section class="requests">
+
+            {% for t in templates %}
+
+            <form action="/request_is_viewed" method="post" target="votar">
+                <input type="text" name="request_id" value="{{ t.request_id }}" style="display: none;">
+                <div class="request" style="opacity:{{ t.viewed }}">
+                  <div class="left_side">
+                    <button class="accept" style="float: right; width: 40px; height: 40px; border-radius: 10px;" type="submit"><div></div><div></div></button>
+                    <div><b>ДАТА:</b> <b>{{ t.date }}</b></div>
+                    <div><b>ИМЯ:</b> {{ t.name }}</div>
+                    <div><b>EMAIL:</b> {{ t.email }}</div>
+                    <div><b>НОМЕР:</b> {{ t.tel }}</div>
+                  </div>
+                  <div style="padding-top: 15px;"><b>ПРОБЛЕМА:</b> {{ t.problem }}</div>
+                </div>
+            </form>
+
+            {% endfor %}
+
+          </section>
+          <section class="reserved_boards" style="display:none">
+
+            {% for a in reserved_boards_template %}
+
+              <div style="font-family:montserrat;width: 800px; border: 3px solid black; border-radius: 20px; margin: 20px auto; padding: 20px;">
+              <b>Время заказа: </b>{{ a[0] }}
+
+              {% for b in a[1] %}
+
+              <div class="product">
+                <img src="static/IMG/products/{{ b.img_src }}">
+                <div class="right_side">
+                    <p>Процессор {{b.processor}} {{b.frequency}}GHz {{b.cores}} ядер {{b.threads}} потоков, ОЗУ {{b.ram_type}} {{b.ram_size}} ГБ, сокет: {{b.socket}}</p>
+                    <div class="footer">
+                        <div class="price">Цена: {{b.price}}<span>₽</span></div>
+                        <div class="quantity">{{b.quantity}}шт</div>
+                    </div>
+                </div>
+              </div>
+
+              {% endfor %}
+
+              </div>
+
+            {% endfor %}
+
+          </section>
+
+        </div>
+        <footer>
+            <div class="social_media2">
+              <a href="https://vk.com/djentpc"><img src="{{ url_for('static', filename='IMG/vk2.jpg') }}" alt=""></a>
+              <a href="https://t.me/djentpc"><img src="{{ url_for('static', filename='IMG/telegram2.jpg') }}" alt=""></a>
+            </div>
+            <div class="hr"></div>
+            <div class="text">© Djent PC. Все права защищены</div>
+          </footer>
+        </body>
+        <style>
+            .products{
+              padding-top: 10px;
+              margin: 0 auto;
+            }
+
+            .add_item{
+                width: 400px;
+                margin: 0 auto;
+                padding: 40px 20px 20px 20px;
+                font-family: montserrat;
+                font-size: 18px;
+                text-align: center;
+                border: 2px solid black;
+                position: relative;
+            }
+
+            .add_item div{
+                margin-top: 30px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .add_item input{
+                font-family: montserrat;
+                font-size: 18px;
+            }
+
+            button{
+                margin: 40px 0 0 0;
+                font-family: montserrat;
+                font-weight: 600;
+                font-size: 20px;
+                color: white;
+                background-color: black;
+                border: 1px solid;
+                border-radius: 30px;
+                width: 200px;
+                height: 50px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+
+            .add_item button{
+                margin: 40px 0 0 0;
+                font-family: montserrat;
+                font-weight: 600;
+                font-size: 20px;
+                color: white;
+                background-color: black;
+                border: 1px solid;
+                border-radius: 30px;
+                width: 200px;
+                height: 50px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+
+            button:hover{
+                background-color: white;
+                color: black;
+            }
+
+            .button_save{
+              width: 200px;
+              margin: 0 auto 30px auto;
+              height: 60px;
+            }
+
+            .button_save button{
+              padding: 0;
+            }
+            /*****************************************/
+            
+            .right_side{
+                width: 80%;
+                margin-right:30px;
+            }
+
+            
+            input[type=text]{
+                width: 100px;
+            }
+
+            .product button{
+              background-color: black;
+              border-radius: 10px;
+              width: 40px;
+              height: 40px;
+              cursor: pointer;
+            }
+            .product button:hover div{
+              background-color: black;
+            }
+
+            .accept div{
+              position: relative;
+              top: 10px;
+              right: -5px;
+              background-color: white;
+              width: 15px;
+              height: 3px;
+              transform: rotate(60deg);
+            }
+
+            .accept div:last-child{
+              background-color: white;
+              transform: rotate(-60deg);
+              left: 10px;
+              width: 25px;
+              top: 1px;
+            }
+
+            /* REQUEST SECTION CSS ********/
+            .requests{
+              display:block;
+            }
+
+            .request{
+              max-width: 620px;
+              margin: 20px auto;
+              border: 2px solid;
+              border-radius: 20px;
+              padding: 10px;
+              font-family: montserrat;
+            }
+
+            .request .left_side div{
+              max-width: 400px;
+              display: flex;
+              justify-content: space-between;
+            }
+
+        </style>
+        <script>
+        function buildCatalog(){
+      
+        }
+        function showRequests(){
+          console.log(document.querySelectorAll('button'))
+          document.querySelectorAll('button')[2].style="color:white;background-color:black"
+          document.querySelectorAll('button')[1].style="color:black;background-color:white"
+          document.querySelectorAll('button')[0].style="color:white;background-color:black"
+          document.querySelectorAll('.products')[0].style="display:none"
+          document.querySelectorAll('.requests')[0].style="display:block"
+          document.querySelectorAll('.reserved_boards')[0].style="display:none"
+        }
+
+        function showProducts(){
+          document.querySelectorAll('button')[0].style="color:black;background-color:white"
+          document.querySelectorAll('button')[1].style="color:white;background-color:black"
+          document.querySelectorAll('button')[2].style="color:white;background-color:black"
+          document.querySelectorAll('.products')[0].style="display:flex"
+          document.querySelectorAll('.requests')[0].style="display:none"
+          document.querySelectorAll('.reserved_boards')[0].style="display:none"
+        }
+
+        function showReservedBoards(){
+          document.querySelectorAll('button')[0].style="color:white;background-color:black"
+          document.querySelectorAll('button')[1].style="color:white;background-color:black"
+          document.querySelectorAll('button')[2].style="color:black;background-color:white"
+          document.querySelectorAll('.products')[0].style="display:none"
+          document.querySelectorAll('.requests')[0].style="display:none"
+          document.querySelectorAll('.reserved_boards')[0].style="display:block"
+        }
+
+        buildCatalog()
+</script>
+</html>

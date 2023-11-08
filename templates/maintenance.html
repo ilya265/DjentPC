@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/header_footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/maintenance.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <link rel="shortcut icon" href="{{ url_for('static', filename='IMG/favicon.ico') }}" type="image/x-icon">
+    <title>Ремонт и обслуживание</title>
+  </head>
+  <body >
+    <header>
+    <iframe name="votar" style="display:none;"></iframe>
+      <!-- drop down menu -->
+      <div class="drop_down_menu">
+        <nav class="nav">
+          <a href="/">Главная</a>
+          <a href="catalog">Комплектующие</a>
+          <a href="maintenance" class="current_page">Ремонт и обслуживание</a>
+        </nav> 
+
+        <div class="social_media2">
+          <a href="https://vk.com/djentpc"><img src="{{ url_for('static', filename='IMG/vk2.jpg') }}" alt=""></a>
+          <a href="https://t.me/djentpc"><img src="{{ url_for('static', filename='IMG/telegram2.jpg') }}" alt=""></a>
+        </div>
+      </div>
+      <!-- drop down menu end-->
+
+      <div class="header_flexbox">
+        <nav class="nav">
+          <a href="/">Главная</a>
+          <a href="catalog">Комплектующие</a>
+          <a href="maintenance" class="current_page">Ремонт и обслуживание</a>
+        </nav> 
+        <div class="logo"><a href="/"><img src="{{ url_for('static', filename='IMG/logo.png') }}" alt=""></a></div>
+        <div class="wrapper">
+
+          <div class="social_media">
+            <a href="https://vk.com/djentpc"><div><img src="{{ url_for('static', filename='IMG/vk.png') }}" alt=""></div></a>
+            <a href="https://t.me/djentpc"><div><img src="{{ url_for('static', filename='IMG/telegram.png') }}" alt=""></div></a>
+          </div>
+
+          <div class="button" onclick="rotateMenuBtn(menu_btn_status)">
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>  
+    </header>
+
+    <!-- popup ----->
+
+    <div class="popup">
+
+      <div class="exit" onclick="document.querySelectorAll('.popup')[0].style=('display: none')">
+        <div></div>
+        <div></div>
+      </div>
+
+      <div class="window">
+        <h3>Отправить запрос на ремонт</h3>
+        <p>Введите контактные данные</p>
+
+        <form method="post" action="/reg_form" target="votar">
+          <input type="email" alt="верно" placeholder="Email" name="email">
+          <input type="text" placeholder="Имя" name="name" required>
+          <input type="tel" placeholder="Номер телефона" pattern="8[0-9]{10}" name="tel" required>
+          <input type="text" height="30px" placeholder="Кратко опишите проблему" name="problem" required>
+          <button onclick="popupFormHide()">Отправить</button>
+        </form>
+        <h2>Заявка отправлена, мы ответим на неё в ближайшее время.</h2>
+      </div> 
+    </div>
+
+    <!-- popup end-->
+
+    <section class="intro">
+      <div class="intro_bg"></div>
+      <div class="wrapper_center">
+        <h1>Отправить заявку на ремонт</h1>
+        <h3>Оставьте заявку и с вами свяжется сотрудник нашей мастерской!</h3>
+          <a onclick="show_popup()">Оставить заявку</a>
+      </div>
+
+    </section> 
+    
+    <section class="how_we_work">
+        <h1>Как мы работаем?</h1>
+        <div class="wrapper_unification">
+          <div class="wrapper_items">
+
+            <div class="item one">
+              <h3>Сообщаете о проблеме</h3>
+              <p>Звоните в наш центр, описываетие проблему, в тот же день мастер приезжает к вам.</p>
+            </div>
+
+            <div class="item two_adaptive">
+              <h3>Бесплатная диагностика</h3>
+              <p>Наш мастер произведет диагностику, сообщит о проблеме и предложит решение.</p>
+            </div>
+
+            <div class="item three">
+              <h3>Ремонт</h3>
+              <p>Мы договоримся о цене и сроках, мастер начнет работу</p>
+            </div>
+
+          </div>
+
+            <div class="figure">
+              <div class="circle">1</div>
+              <div class="line"></div>
+              <div class="circle">2</div>
+              <div class="line"></div>
+              <div class="circle">3</div>
+            </div>
+
+            <div class="item two">
+              <h3>Бесплатная диагностика</h3>
+              <p>Наш мастер произведет диагностику, сообщит о проблеме и предложит решение.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services_list">
+      <h1>Список услуг</h1>
+      <ul>
+        <li>Установка OS.</li>
+        <li>Ремонт компьютеров на дому с выездом.</li>
+        <li>Замена USВ портов, гнезд зарядки, портов.</li>
+        <li>Ремонт планшетов на дому с выездом.</li>
+        <li>Замена чипа ноутбука, замена видеокарты.</li>
+        <li>Выездное обслуживание компьютеров в офисе.</li>
+        <li>Синий экран, устранение причин ВSОD.</li>
+        <li>Установка антивирусного ПО.</li>
+        <li>Поиск Лечение Удаление вирусов.</li>
+        <li>Замена комплектующих.</li>
+        <li>Установка Оffiсе, настройка Windows.</li>
+        <li>Настройка роутера, Wi-Fi, маршрутизатора, устранение проблем с сетью.</li>
+        <li>Подключение и настройка принтеров / сканеров / МФУ / камер и др.</li>
+        <li>Сброс пароля Windоws Удаление учётной записи.</li>
+        <li>Поиск и установка драйверов.</li>
+        <li>Сборка компьютера под ваши задачи.</li>
+        <li>Установка офисных программ.</li>
+        <li>Установка и обновление драйверов.</li>
+        <li>Чистка ноутбуков и компьютеров от пыли.</li>
+        <li>Устранение перегрева и выключения ноутбука.</li>
+        <li>Устранение шума ноутбука/ смазка и замена вентиляторов.</li>
+        <li>Удаление вирусов / шифровальщиков / СМС баннеров-блокираторов.</li>
+        <li>Чистка от пыли ноутбука ПК Установка антивируса / родительского контроля.</li>
+        <li>Установка программ для работы / учебы / интернета / игр и развлечений.</li>
+        <li>Восстановление данных после удаления и форматирования с жестких дисков.</li>
+        <li>Перенос данных на новый компьютер / перенос ПК с подключением на новое место.</li>
+        <li>Обучение работе с компьютером и интернетом.</li>
+      </ul>
+
+      <p>Цену озвучиваем перед началом работы, после выполнения она не меняется. Работа считается выполненной только после вашего удовлетворения в ней. После оплаты услуги, выдается Гарантия.</p>
+    </section>
+
+    <footer>
+      <div class="social_media2">
+        <a href="https://vk.com/djentpc"><img src="{{ url_for('static', filename='IMG/vk2.jpg') }}" alt=""></a>
+        <a href="https://t.me/djentpc"><img src="{{ url_for('static', filename='IMG/telegram2.jpg') }}" alt=""></a>
+      </div>
+      <div class="hr"></div>
+      <div class="text">© Djent PC. Все права защищены</div>
+    </footer>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="{{ url_for('static', filename='JS/script.js') }}"></script>
+  <script>
+  </script>
+</html>
