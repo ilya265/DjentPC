@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+        <link rel="stylesheet" href="static/CSS/header_footer.css">
+        <link rel="stylesheet" href="static/CSS/catalog.css">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"> 
+        <link rel="shortcut icon" href="static/IMG/favicon.ico" type="image/x-icon">
+        <title>DjentPC - Products</title>
+      </head>
+    <body>
+        <header>
+        <!-- drop down menu ------------->
+          <div class="drop_down_menu">
+            <nav class="nav">
+              <a href="/">Main page</a>
+              <a href="catalog" class="current_page">Products</a>
+              <a href="maintenance">Repair and maintenance</a>
+            </nav> 
+    
+            <div class="social_media2">
+              <a href="https://vk.com/djentpc"><img src="static/IMG/vk2.jpg" alt=""></a>
+              <a href="https://t.me/djentpc"><img src="static/IMG/telegram2.jpg" alt=""></a>
+            </div>
+          </div>
+          <!-- drop down menu end ------->
+
+          <!-- apply filters ----->
+          <a href="" class="apply_filters">Show</a>
+          <!-- apply filtes end -->
+          
+          <div class="header_flexbox">
+            <nav class="nav">
+              <a href="/">Main page</a>
+              <a href="catalog" class="current_page">Products</a>
+              <a href="maintenance">Repair and maintenance</a>
+            </nav> 
+            <div class="logo"><a href="/"><img src="static/IMG/logo.png" alt=""></a></div>
+            <div class="wrapper">
+    
+              <div class="social_media">
+                <a href="https://vk.com/djentpc"><div><img src="static/IMG/vk.png" alt=""></div></a>
+                <a href="https://t.me/djentpc"><div><img src="static/IMG/telegram.png" alt=""></div></a>
+              </div>
+    
+              <div class="button" onclick="rotateMenuBtn(menu_btn_status)">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>  
+        </header>
+        <section class="catalog">
+          <div class="close_panel" onclick="closeFilters()">
+            <div></div>
+            <div></div>
+          </div>
+          <div class="search_panel">
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(0)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Processor</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2420" onclick="reviewSelectedFilters()"> Intel Xeon E5-2420</div>
+                <div class="input"><input type="checkbox" key="processor" value="Intel Xeon E5-2450 v2" onclick="reviewSelectedFilters()"> Intel Xeon E5-2450v2</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2620" onclick="reviewSelectedFilters()"> Intel Xeon E5-2620</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2650" onclick="reviewSelectedFilters()"> Intel Xeon E5-2650</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2670" onclick="reviewSelectedFilters()"> Intel Xeon E5-2670</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2680" onclick="reviewSelectedFilters()"> Intel Xeon E5-2680</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2689" onclick="reviewSelectedFilters()"> Intel Xeon E5-2689</div>
+                <div class="input"><input type="checkbox" key="processor" value="intel Xeon e5 2690" onclick="reviewSelectedFilters()"> Intel Xeon E5-2690</div>
+              </div>
+            </div>
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(1)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Frequency</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="frequency" value=1.9 onclick="reviewSelectedFilters()"> 1.9 GHz</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.0 onclick="reviewSelectedFilters()"> 2.0 GHz</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.1 onclick="reviewSelectedFilters()"> 2.1 GHz</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.2 onclick="reviewSelectedFilters()"> 2.2 GHz</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.3 onclick="reviewSelectedFilters()"> 2.3 GHz</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.4 onclick="reviewSelectedFilters()"> 2.4 GHz</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.5 onclick="reviewSelectedFilters()"> 2.5 GHz</div>
+                <div class="input"><input type="checkbox" key="frequency" value=2.6 onclick="reviewSelectedFilters()"> 2.6 GHz</div>
+              </div>
+            </div>
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(2)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Socket</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="socket" value="LGA 2011" onclick="reviewSelectedFilters()"> LGA 2011</div>
+                <div class="input"><input type="checkbox" key="socket" value="LGA 1356" onclick="reviewSelectedFilters()"> LGA 1356</div>
+
+              </div>
+            </div>
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(3)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Cores quantity</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="cores" value=4 onclick="reviewSelectedFilters()"> 4</div>
+                <div class="input"><input type="checkbox" key="cores" value=6 onclick="reviewSelectedFilters()"> 6</div>
+                <div class="input"><input type="checkbox" key="cores" value=8 onclick="reviewSelectedFilters()"> 8</div>
+              </div>
+            </div>
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(4)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>Threads quantity</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="threads" value=4 onclick="reviewSelectedFilters()"> 4</div>
+                <div class="input"><input type="checkbox" key="threads" value=6 onclick="reviewSelectedFilters()"> 6</div>
+                <div class="input"><input type="checkbox" key="threads" value=8 onclick="reviewSelectedFilters()"> 8</div>
+                <div class="input"><input type="checkbox" key="threads" value=12 onclick="reviewSelectedFilters()"> 12</div>
+                <div class="input"><input type="checkbox" key="threads" value=16 onclick="reviewSelectedFilters()"> 16</div>
+              </div>
+            </div>
+
+            <div class="flex_search_filter">
+              <div class="arrow arrow_up" onclick="changeArrow(5)">
+                <div></div>
+                <div></div>
+              </div>
+              <p>RAM</p>
+              <div class="div_for_hide">
+                <div class="input"><input type="checkbox" key="ram_size" value=8 onclick="reviewSelectedFilters()"> 8 GB</div>
+                <div class="input"><input type="checkbox" key="ram_size" value=12 onclick="reviewSelectedFilters()"> 12 GB</div>
+                <div class="input"><input type="checkbox" key="ram_size" value=16 onclick="reviewSelectedFilters()"> 16 GB</div>
+              </div>
+
+              <div class="flex_search_filter">
+                <div class="arrow arrow_up" onclick="changeArrow(6)">
+                  <div></div>
+                  <div></div>
+                </div>
+                <p>RAM type</p>
+                <div class="div_for_hide">
+                  <div class="input"><input type="checkbox" key="ram_type" value="DDR3" onclick="reviewSelectedFilters()"> DDR3</div>
+                  <div class="input"><input type="checkbox" key="ram_type" value="DDR4" onclick="reviewSelectedFilters()"> DDR4</div>
+                </div>
+              </div>
+            </div>
+            <div style="height: 50px;"></div>
+          </div>
+
+          <!-- new section ------------------------------------------------------------------------------------------->
+          <div class="products">
+            <div class="wrapper_products">
+              <div class="filters_basket">
+                <p class="filters" onclick="showFilters()">Filters</p>
+                <p class="basket" onclick="showBasket()" value="closed">Cart</p>
+              </div>
+
+              <h1 class="empty">Cart</h1>
+              <p class="empty">Cart is empty</p>
+
+            </div>
+              <button class="trade_button" type="submit" onclick="reserveOrder()">Make an order</button>
+            </form>
+            <h2 class=personal_num style="display:none"></h2>
+            <p class="trade_text">Order is registered. You can come to our store and receive your order within 2 days</p>
+            {% if template == [] %}
+            <div style="text-align:center">Nothing find</div>
+            {% else %}
+            {% for t in template %}
+            <div class="product" value="{{ t.product_id }}">
+              <img src="static/IMG/products/{{t.img_src}}">
+              <div class="right_side">
+                  <p>Processor {{t.processor}} {{t.frequency}}GHz {{t.cores}} cores {{t.threads}} threads, RAM {{t.ram_type}} {{t.ram_size}} GB, socket: {{t.socket}}</p>
+                  <div class="footer">
+                      <div class="price">Price: <span>{{t.price}} $</span></div>
+                      <button onclick="addToBasket('{{t.product_id}}')">Add to cart</button>
+                  </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+          </div>
+        </section>
+
+        <footer>
+            <div class="social_media2">
+              <a href="https://vk.com/djentpc"><img src="static/IMG/vk2.jpg" alt=""></a>
+              <a href="https://vk.com/djentpc"><img src="static/IMG/telegram2.jpg" alt=""></a>
+            </div>
+            <div class="hr"></div>
+            <div class="text">© Djent PC. All rights reserved</div>
+          </footer>
+        </body>
+        <script src="static/JS/jquery-3.7.1.js"></script>
+        <script src="static/JS/script.js"></script>
+        <script src="static/JS/catalog.js"></script>
+        <script></script>
+    </body>
+</html>

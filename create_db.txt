@@ -1,0 +1,86 @@
+### JUST COPY AND PASTE INTO MARIADB ###
+
+CREATE DATABASE djentpc;
+USE djentpc;
+
+CREATE TABLE products (
+ product_id INTEGER NOT NULL AUTO_INCREMENT,
+ img_src VARCHAR(50),
+ processor VARCHAR(50),
+ frequency varchar(5),
+ socket VARCHAR(50),
+ cores INTEGER,
+ threads INTEGER,
+ ram_size INTEGER,
+ ram_type VARCHAR(50),
+ price INTEGER,
+ quantity INTEGER,
+ on_sale BOOLEAN DEFAULT 1,
+ PRIMARY KEY(product_id)
+);
+
+
+CREATE TABLE orders (
+ order_id INTEGER AUTO_INCREMENT,
+ email VARCHAR(50),
+ name VARCHAR(50),
+ tel VARCHAR(50),
+ problem VARCHAR(200),
+ date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ status INTEGER NOT NULL DEFAULT 0,
+ PRIMARY KEY(order_id)
+);
+
+
+CREATE TABLE reservations (
+ reserve_id INTEGER AUTO_INCREMENT,
+ personal_num INTEGER,
+ product_id INTEGER,
+ date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ status INTEGER NOT NULL DEFAULT 0,
+ PRIMARY KEY(reserve_id)
+);
+
+CREATE VIEW combined_reservations AS
+SELECT
+    r.product_id AS combined_id,
+    r.personal_num,
+    r.date,
+    r.status,
+    p.img_src,
+    p.processor,
+    p.frequency,
+    p.socket,
+    p.cores,
+    p.threads,
+    p.ram_size,
+    p.ram_type,
+    p.price,
+    p.quantity,
+    p.on_sale
+FROM
+    reservations r
+LEFT JOIN
+    products p ON r.product_id = p.product_id;
+
+
+INSERT INTO products (
+product_id, img_src, processor, frequency, socket, cores, threads, ram_size, ram_type, price, quantity)
+VALUES
+(1, '1.jpg', 'intel Xeon e5 2689', "2.6", 'LGA 2011', 8, 16, 16, 'DDR3', 85, 6),
+(2, '2.jpg', 'intel Xeon e5 2420', "1.9", 'LGA 1356', 6, 12, 8, 'DDR3', 65, 2),
+(3, '3.jpg', 'intel Xeon e5 2670', "2.0", 'LGA 2011', 8, 16, 16, 'DDR3', 80, 8),
+(4, '4.jpg', 'intel Xeon E5-2420 v2', "2.6", 'LGA 1356', 8, 16, 16, 'DDR3', 135, 4);
+
+INSERT INTO orders
+(email, name, tel, problem, status)
+VALUES
+('john@gmail.com', 'john', '89346501523', 'My monitor does not work even the PC is power ON',3),
+('david.com', 'david', '89346501523', 'I am made PC from different parts, and it is power off after 2 minutes of working',1);
+
+INSERT INTO reservations
+(personal_num, product_id, status)
+VALUES
+(65434, 3, 0),
+(65434, 1, 0),
+(18345, 4, 1);

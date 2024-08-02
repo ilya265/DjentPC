@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/header_footer.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/catalog.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"> 
+        <link rel="shortcut icon" href="{{ url_for('static', filename='IMG/favicon.ico') }}" type="image/x-icon">
+        <title>Admin panel</title>
+      </head>
+    <body>
+        <header>
+        <!-- drop down menu -->
+          <div class="drop_down_menu">
+            <nav class="nav">
+              <a href="/">Main page</a>
+              <a href="catalog" >Catalog</a>
+              <a href="maintenance">Repair and maintenance</a>
+            </nav> 
+    
+            <div class="social_media2">
+              <a href="https://vk.com/djentpc"><img src="{{ url_for('static', filename='IMG/vk2.jpg') }}" alt=""></a>
+              <a href="https://t.me/djentpc"><img src="{{ url_for('static', filename='IMG/telegram2.jpg') }}" alt=""></a>
+            </div>
+          </div>
+          <!-- drop down menu end-->
+          
+          <div class="header_flexbox">
+            <nav class="nav">
+              <a href="/">Main page</a>
+              <a href="catalog" >Products</a>
+              <a href="maintenance">Repair and maintenance</a>
+            </nav> 
+            <div class="logo"><a href="/"><img src="{{ url_for('static', filename='IMG/logo.png') }}" alt=""></a></div>
+            <div class="wrapper">
+    
+              <div class="social_media">
+                <a href="https://vk.com/djentpc"><div><img src="{{ url_for('static', filename='IMG/vk.png') }}" alt=""></div></a>
+                <a href="https://t.me/djentpc"><div><img src="{{ url_for('static', filename='IMG/telegram.png') }}" alt=""></div></a>
+              </div>
+    
+              <div class="button" onclick="rotateMenuBtn(menu_btn_status)">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>  
+        </header>
+        <div style="min-height:100vh">
+
+          <div style="height: 100px"></div>
+          <div style="display:flex; justify-content: center;margin-bottom: 30px;">
+            <button onclick="showProducts()">Products</button>
+            <button onclick="showOrders()" style="color:black;background-color:white">Orders</button>
+            <button onclick="showReservedBoards()">Reserved</button>
+          </div>
+          <section class="products" style="display:none">
+          <div class="add_item">
+            <form action="" enctype="multipart/form-data" method="post" id="form">
+              <h1>Add new board</h1>
+              <div class="input"> Picture: <input type="file" name="img" style="padding-left: 150px" accept="image/jpg" required></div>
+              <div class="input"> Processor: <input type="text" name="processor" required></div>
+              <div class="input"> Frequency: <input type="text" name="frequency" pattern="^[0-9]*(\.[0-9]+)?$" required></div>
+              <div class="input"> Socket: <input type="text" name="socket" required></div>
+              <div class="input"> Cores quantity: <input type="text" name="cores" pattern="^\d+$" required></div>
+              <div class="input"> Threads quantity: <input type="text" name="threads" pattern="^\d+$" required></div>
+              <div class="input"> RAM size: <input type="text" name="ram_size" pattern="^\d+$" required></div>
+              <div class="input"> RAM type: <input type="text" name="ram_type"></div>
+              <div class="input"> Price: <input type="text" name="price" pattern="^\d+$" required></div>
+              <div class="input"> Quantity: <input type="text" name="quantity" pattern="^\d+$" required></div>
+              <button type="submit">Add</button>
+          </form>
+          <button class="clear" onclick="clear_form()">Clear</button>
+          </div>
+
+          {% for t in products_template %}
+
+              <div class="product {{ t.product_id }}" style={% if (t.on_sale == 0) %} "opacity:0.4" {% endif %}>
+                <img src="static/IMG/products/{{t.img_src}}">
+                <div class="right_side">
+                    <p>Processor {{t.processor}} {{t.frequency}}GHz {{t.cores}} cores {{t.threads}} threads, RAM {{t.ram_type}} {{t.ram_size}} GB, socket: {{t.socket}}</p>
+                    <div class="footer">
+                        <div class="price">Price: <input type="text" name="price" value="{{t.price}}"><span>$</span></div>
+                        <div class="quantity"><input type="text" name="quantity" value="{{t.quantity}}"> psc.</div>
+                        <button class="accept" onclick="changeBoard({{ t.product_id }})">
+                          <div></div>
+                          <div></div>
+                        </button>
+                        <div>
+                          <label for="checkbox" style="padding-right: 10px;">Delete:</label>
+                          <input style="scale: 2;" type="checkbox" name="del" {% if (t.on_sale == 0) %} checked="true" {% endif %}>>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+            {% endfor %}
+
+          </section>
+          <section class="orders">
+
+            {% for t in orders_template %}
+
+                <div class="order {{ t.order_id }}" style="{% if (t.status == 1) %} background:#8bf78b {% endif %}{% if (t.status == 2) %} opacity:0.4 {% endif %}{% if (t.status == 3) %} background:#f1f184 {% endif %}" >
+                  <div class="left_side">
+                    <button class="accept" onclick="changeOrderStatus({{ t.order_id }})"><div></div><div></div></button>
+                    Status:
+                    <select name="order_status">
+
+                      {% if (t.status == 0) %}
+                      <option value="">Change status</option>
+                      <option value="1">Closed</option>
+                      <option value="2">Viewed</option>
+                      <option value="3">In work</option>
+                      {% endif %}
+
+                      {% if (t.status == 1) %}
+                      <option value="1">Closed</option>
+                      <option value="2">Viewed</option>
+                      <option value="3">In work</option>
+                      {% endif %}
+
+                      {% if (t.status == 2) %}
+                      <option value="2">Viewed</option>
+                      <option value="1">Closed</option>
+                      <option value="3">In work</option>
+                      {% endif %}
+
+                      {% if (t.status == 3) %}
+                      <option value="3">In work</option>
+                      <option value="1">Closed</option>
+                      <option value="2">Viewed</option>
+                      {% endif %}
+                    </select>
+                    <div><b>DATE:</b> <b>{{ t.date }}</b></div>
+                    <div><b>NAME:</b> {{ t.name }}</div>
+                    <div><b>EMAIL:</b> {{ t.email }}</div>
+                    <div><b>NUMBER:</b> {{ t.tel }}</div>
+                  </div>
+                  <div style="padding-top: 15px;"><b>PROBLEM:</b> {{ t.problem }}</div>
+                </div>
+
+            {% endfor %}
+
+          </section>
+
+          <section class="reserved_boards" style="display:none">
+
+            <div>
+
+            {% for item in reservations_template %}
+
+              {% if (loop.index0 == 0) or reservations_template[(loop.index0)].personal_num != reservations_template[(loop.index0) - 1].personal_num %}
+
+            </div>
+            <div class='big_wrapper {{item.personal_num}}' style="{% if (item.status == 1) %} background:#8bf78b {% endif %}{% if (item.status == 2) %} background:#f36666 {% endif %}{% if (item.status == 3) %} background:#f1f184 {% endif %}">
+      
+              Status:
+              <select id="reserve_status" name="reserve_status">
+
+                {% if (item.status == 0) %}
+                <option value="">Change status</option>
+                <option value="1">Closed</option>
+                <option value="2">Rejected</option>
+                <option value="3">In work</option>
+                {% endif %}
+
+                {% if (item.status == 1) %}
+                <option value="1">Closed</option>
+                <option value="2">Rejected</option>
+                <option value="3">In work</option>
+                {% endif %}
+
+                {% if (item.status == 2) %}
+                <option value="">Rejected</option>
+                {% endif %}
+
+                {% if (item.status == 3) %}
+                <option value="3">In work</option>
+                <option value="1">Closed</option>
+                <option value="2">Rejected</option>
+                {% endif %}
+
+              </select>
+              <button class="accept" onclick="changeReservedStatus( {{ item.personal_num }} )"><div></div><div></div></button><br>
+              <b>Reservation date: </b>{{ item.date }}<br>
+              <b>Personal_num: </b> {{item.personal_num}}
+
+              {% endif %}
+
+
+                <div class="product" style={% if (item.on_sale == 0) %} "opacity:0.4" {% endif %}>
+                  <img src="static/IMG/products/{{ item.img_src }}">
+                  <div class="right_side">
+                      <p>Processor {{item.processor}} {{item.frequency}}GHz {{item.cores}} cores {{item.threads}} threads, RAM {{item.ram_type}} {{item.ram_size}} GB, socket: {{item.socket}}</p>
+                      <div class="footer">
+                          <div class="price">Price: {{item.price}}<span>$</span></div>
+                      </div>
+                  </div>
+                </div>                       
+
+          
+            {% endfor %}
+            </div>
+           </section>
+
+        <footer>
+            <div class="social_media2">
+              <a href="https://vk.com/djentpc"><img src="{{ url_for('static', filename='IMG/vk2.jpg') }}" alt=""></a>
+              <a href="https://t.me/djentpc"><img src="{{ url_for('static', filename='IMG/telegram2.jpg') }}" alt=""></a>
+            </div>
+            <div class="hr"></div>
+            <div class="text">© Djent PC. All rights reserved</div>
+          </footer>
+        </body>
+        <style>
+
+            .products{
+              padding-top: 10px;
+              margin: 0 auto;
+            }
+
+            .add_item{
+                width: 400px;
+                margin: 0 auto;
+                padding: 40px 20px 20px 20px;
+                font-family: montserrat;
+                font-size: 18px;
+                text-align: center;
+                border: 2px solid black;
+                position: relative;
+            }
+
+            .add_item div{
+                margin-top: 30px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .add_item .error{
+              margin: 0 auto;
+              color: red;
+              text-align: center;
+              display:block;
+              font-weight: 600;
+            }
+
+            .add_item input{
+                font-family: montserrat;
+                font-size: 18px;
+            }
+
+            button{
+                margin: 40px 0 0 0;
+                font-family: montserrat;
+                font-weight: 600;
+                font-size: 20px;
+                color: white;
+                background-color: black;
+                border: 1px solid;
+                border-radius: 30px;
+                width: 200px;
+                height: 50px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+
+            .add_item button{
+                margin: 40px 0 0 0;
+                font-family: montserrat;
+                font-weight: 600;
+                font-size: 20px;
+                color: white;
+                background-color: black;
+                border: 1px solid;
+                border-radius: 30px;
+                width: 200px;
+                height: 50px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+
+            .add_item .clear{
+              width: 100px;
+              background-color: black;
+              color: white;
+            }
+
+            .add_item .clear:hover{
+              background-color: white;
+              color: black;
+              transition: 0.3;
+            }
+
+            button:hover{
+                background-color: white;
+                color: black;
+            }
+
+            .button_save{
+              width: 200px;
+              margin: 0 auto 30px auto;
+              height: 60px;
+            }
+
+            .button_save button{
+              padding: 0;
+            }
+            /*** Products section **************************************/
+            
+            .right_side{
+                width: 80%;
+                margin-right:30px;
+            }
+
+            
+            input[type=text]{
+                width: 100px;
+            }
+
+            .product button{
+              background-color: black;
+              border-radius: 10px;
+              width: 40px;
+              height: 40px;
+              cursor: pointer;
+            }
+
+            .product img{
+              z-index:100;
+            }
+            .product button:hover div{
+              background-color: black;
+            }
+
+            .accept div{
+              position: relative;
+              top: 10px;
+              right: -5px;
+              background-color: white;
+              width: 15px;
+              height: 3px;
+              transform: rotate(60deg);
+            }
+
+            .accept div:last-child{
+              background-color: white;
+              transform: rotate(-60deg);
+              left: 10px;
+              width: 25px;
+              top: 1px;
+            }
+
+            /* Reservation SECTION ********/
+            .orders{
+              display:block;
+            }
+
+            .order{
+              max-width: 620px;
+              margin: 20px auto;
+              border: 2px solid;
+              border-radius: 20px;
+              padding: 10px;
+              font-family: montserrat;
+            }
+            
+            .order .accept{
+              float: right;
+              width: 40px;
+              height: 40px;
+              border-radius: 10px;
+            }
+
+            .order .left_side div{
+              max-width: 400px;
+              display: flex;
+              justify-content: space-between;
+            }
+
+
+
+            /* reservaions_section */
+            .big_wrapper{
+              font-family:montserrat;
+              width: 800px;
+              border: 3px solid black;
+              border-radius: 20px;
+              margin: 20px auto;
+              padding: 20px;
+            }
+
+            .big_wrapper select{
+              font-size: 16px;
+            }
+
+            .big_wrapper .accept{
+              width:45px;
+              height: 45px;
+              padding-left: 3px;
+              margin-left: 5px;
+              margin-top: 0px;
+            }
+
+            .big_wrapper .accept:hover div{
+              background-color: black;
+            }
+
+        </style>
+<script src="static/JS/jquery-3.7.1.js"></script>
+<script src="static/JS/632412admin.js"></script>
+</html>
